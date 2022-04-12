@@ -1,0 +1,55 @@
+{
+    "hotelFullName": "HotelName",
+    "hotelLocation":  
+            {                  
+              "hoteladdress": 
+                {
+                  "contactType":
+                    {
+                      "codeList": "ContactType",
+                      "codeValue": 4
+                    }
+                }
+            },
+    "addresses" :
+          {
+            "addressType":
+              {
+                "codeList": "AddressUseType",
+                "codeValue": 7
+              },
+            "line1": "6 Etamin B Block, Prestige Tech Park Internal Rd \n Kadubeesanahalli, Marathahalli",
+            "cityname": "Bengaluru",
+            "postalcode": "560103",
+            "countrycode": "IN"
+          },
+    "emailAddresses":
+        {
+          "emailAddress": "tours.nord@balladins.com",
+          "type" :
+            {
+            "codeList": "EmailAddressType",
+            "codeValue": 5
+            }
+          
+        },
+    "phoneNumbers" :
+        {
+          "phoneNumber": "082853 56165",
+          "techType" :
+            {
+              "codeList": "PhoneTechnologyType",
+              "codeValue": 1
+            }
+        },
+    "guestRoomInfos" : 
+          {
+            "guestRoomCode" :
+              {
+                "codeList": "GuestRoomInfo",
+                "codeValue": 28
+              },
+            "guestRoomQuantity": 31
+        }
+    }
+    

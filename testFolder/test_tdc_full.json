@@ -1,0 +1,139 @@
+{
+    "hotelFullName": "HotelName",
+    "hotelCodeContext": "1A",
+    "currencyCode": "EUR",
+    "brandCode": "XX",
+    "brandName": "Brand name",
+    "chainInternalHotelId": "123445",
+    "languageCode": "en", 
+    "containsRichData": true,
+    "lastUpdater": "HCR",
+    "timeOfLastUpdate": "some time",
+
+    "hotelDescription": {
+      "hotelLongDescription": {
+        "multimediaDescription": "multimedia"
+        }
+      },
+
+      
+    "hotelLocation": {
+      "timezone": -5,
+      "hoteladdress": {
+          "contactType": {
+            "codeList": "ContactType",
+            "codeValue": 4
+            },
+          "addresses": {
+            "addressType": {
+              "codeList": "AddressUseType",
+              "codeValue": 7
+              },
+            "line1": "ADDRESSLINE1_2 \n ADDRESSLINE1_2",
+            "cityname": "CITY",
+            "postalcode": "97100",
+            "county": "FR",
+            "countrycode": "FR"
+            },
+          "addresses2": {
+            "addressType": {
+              "codeList": "AddressUseType",
+              "codeValue": 11
+            },
+            "line1": "CONTACT BLA BLA",
+            "cityname": "CITY",
+            "postalcode": "97100",
+            "county": "FR",
+            "countrycode": "FR"
+        },
+        "emailAddresses": {
+          "emailAddress": "tours.nord@balladins.com",
+          "type": {
+            "codeList": "EmailAddressType",
+            "codeValue": 5
+          }
+        },
+        "phoneNumbers": {
+          "phoneNumber": "34 927 65 9190",
+          "techType": {
+            "codeList": "PhoneTechnologyType",
+            "codeValue": 1
+          }
+        }
+      }
+    },
+    "hotelFacilityInfo": {
+      "facilitiesDescription": {
+        "multimediaDescription": ""
+      }
+    },
+    "guestRoomInfos": {
+      "guestRoomCode": {
+        "codeList": "GuestRoomInfo",
+        "codeValue": 28
+      },
+      "guestRoomQuantity": 31
+    },
+    "contactInfos": {
+      "contactType": {
+        "codeList": "ContactType",
+        "codeValue": 6
+      },
+      "addresses": {
+        "addressType": {
+          "codeList": "AddressUseType",
+          "codeValue": 11
+        },
+        "line1": "CONTACT BLA BLA",
+        "cityname": "CITY",
+        "postalcode": "97100",
+        "county": "FR",
+        "countrycode": "FR"
+      },
+      "phoneNumbers": {
+        "phoneNumber": "34 927 65 9190",
+        "techType": {
+          "codeList": "PhoneTechnologyType",
+          "codeValue": 1
+        }
+      }
+    },
+    "contactInfos2": {
+      "contactType": {
+        "codeList": "ContactType",
+        "codeValue": 15
+      },
+      "addresses": {
+        "addressType": {
+          "codeList": "AddressUseType",
+          "codeValue": 11
+        },
+        "line1": "CONTACT BLA BLA",
+        "cityname": "CITY",
+        "postalcode": "97100",
+        "county": "FR",
+        "countrycode": "FR"
+      },
+      "emailAddresses": {
+        "emailAddress": "tours.nord@balladins.com",
+        "type": {
+          "codeList": "EmailAddressType",
+          "codeValue": 5
+        }
+      },
+      "phoneNumbers": {
+        "phoneNumber": "34 927 65 9190",
+        "techType": {
+          "codeList": "PhoneTechnologyType",
+          "codeValue": 1
+        }
+      }
+    },
+    "markets": {
+      "market:": "**"
+    },
+    "effectivePeriods": {
+      "startDate": "",
+      "endDate": ""
+    }
+    }
