@@ -1,0 +1,54 @@
+
+    h1 {
+	    text-align:center;
+	    border-bottom: 2px solid #ccc;
+	    letter-spacing:4px;
+        font-weight: bold;
+    }
+    body { 
+	    font-family:arial, sans-serif, 'lucida console';
+	    font-size:0.9em;
+	    color: black; 
+	    background-color: #336699; 
+	    margin: 0px;    
+    }   
+
+    table.table-bordered{
+        border:1px solid black;
+        margin-top:20px;
+    }
+    table.table-bordered > thead > tr > th{
+        border:1px solid black;
+    }
+    table.table-bordered > tbody > tr > td{
+        border:1px solid black;
+    }
+    th, td {
+        margin-left: auto; 
+        margin-right: auto;
+        white-space: break-spaces;
+        min-width: 200px;
+        max-width: 2000px;
+    }
+
+    .tablecontent{
+        display:block;
+        width:90%;
+        top:0px;
+	    background-color: white;
+        padding:0px;
+	    padding:10px;
+	    border:3px solid #ccc;
+        margin: 0 auto;
+    }
+
+    #container {
+	    display:block;
+	    margin-top:10px;
+	    margin-left:10px;
+	    margin-bottom:10px;
+	    padding:0px;
+	    border-width:0px;
+	    top:5px;
+	    bottom:10px;
+    }

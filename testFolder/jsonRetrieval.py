@@ -1,103 +1,61 @@
-#!C:\Users\shaikj\AppData\Local\Programs\Python\Python310\python.exe
-
-from cgitb import html
-from enum import Flag
-from math import fabs
+from audioop import getsample
+from cmath import phase
 import os, sys, json, pprint
+import string
 import re
-
-# disbale http request warning
-import urllib3
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+from tkinter.messagebox import RETRY
 
 import requests
-
-from json2html import *
+from jsonToHtmlTable import writeTable
 
 def main():
 
-    _url = "https://jsonmock.hackerrank.com/api/countries"
+    #_url = "http://test.webservices.1a.amadeus.net:25050/1ASIHOSJSONU/TDCRET/hotels-descriptive-content/property/retrieve-partial"
 
-    if(len(sys.argv) == 2):
-        country = sys.argv[1]
+    if(len(sys.argv) == 4):
+        propertyCode = sys.argv[1]
+        getLongText = sys.argv[2]
+        phase = sys.argv[3]
     else:
-        country = "India"
+        return
 
-    _params = {'name':country}
+    SAPID = getSAP_ID(phase)
 
-    r = requests.get(_url, _params , verify= False)
+    _url = "http://test.webservices.1a.amadeus.net:25050/" + SAPID + "/TDCRET/hotels-descriptive-content/property/retrieve-partial"
 
-    data = r.json()
-    data = data['data'][0]
-    data['nativeName'] = ''
-    data['translations']['ja'] = ""
-    data['altSpellings'] = ['alt1', 'alt2' , 'alt3' , 'alt4 ']
-    #print(data)
+    BODY =  {"propertyCodes":[propertyCode] ,"parameters":{"getLongDescription": getLongText}}
 
-    htmlcode = "<table>"
-    htmlcode += writeHtml(data)
+    r = requests.post(_url, json = BODY)
+
+    retrieved_data =  r.text
+
+    if checkForError(retrieved_data, phase): return
+
+    retrieved_data = json.loads(retrieved_data)         #convert response to json (dict)
+
+    css = "class='table table-bordered table-sm table-hover'"
+
+    htmlcode = "<table " + css +">"
+    htmlcode += writeTable(retrieved_data['propertiesList'][0])
     htmlcode += "</table>"
     print(htmlcode)
 
-    print("<br><br><br>")
-    print("<h2>Partial Retrieval</h2>")
+def getSAP_ID(phase):
+    if(phase == "PDT"):
+        SAPID = "1ASIHOSJSON"
+    elif(phase == "UAT"):
+        SAPID = "1ASIHOSJSONU"
+    elif(phase == "FVT"):
+        SAPID = "1ASIHOSJSONF"
+    elif(phase == "PRD"):
+        SAPID = ""
+    return SAPID
 
-    f = open('test.json')
-    tdc_data = json.load(f)
-    htmlcode = "<table>"
-    htmlcode += writeHtml(tdc_data)
-    htmlcode += "</table>"
-    print(htmlcode)
-
-    print("<br><br><br>")
-    print("<h2>Full Retrieval</h2>")
-
-
-    f = open('test_tdc_full.json')
-    tdc_data = json.load(f)
-    htmlcode = "<table>"
-    htmlcode += writeHtml(tdc_data)
-    htmlcode += "</table>"
-    print(htmlcode)
-
-
-
-
-def writeHtml(jsonData):
-    html = ""
-    for key,value in jsonData.items():
-        #print(str(key) + " " + str(value) + " type of value: " + str(type(value)))
-        if(valueIsNotNested(value)):
-            html += writePair(key, value)
-        elif(type(value) == dict):
-            html += "<td rowspan=" + str(dict_depth(value)) +">" + str(key) + "</td>"
-            html += writeHtml(value)
-        elif(type(value) == list):
-            html += "<tr><td rowspan=" + str(len(value)  + 1) +">" + str(key) + "</td>"
-            for list_value in value:
-                html += "<tr><td>" + str(list_value) +"</td> </tr>"
-
-    return html
-
-def writePair(key, value):
-    html = "<td>" + str(key) +"</td> <td>" + str(value) + "</td></tr><tr>"
-    #print(html)
-    return html
-
-def valueIsNotNested(value):
-    if(type(value) == list or type(value) == dict):
-        return False
-    else:
-        return True 
-
-def dict_depth(dic):
-    cnt = 0
-    for _item in dic:
-        if type(dic[_item]) is dict:
-            cnt += dict_depth(dic[_item])                   
-        else:
-            cnt += 1
-    return cnt
+def checkForError(r, phase):
+    if ("errorList" in r):
+        print(r + " \nIn the env: " + phase)
+        return True
+    return False
 
 if __name__ == "__main__":
     main()
