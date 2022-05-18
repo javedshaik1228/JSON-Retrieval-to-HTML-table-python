@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mystyles.css">
     <title>Hotel Descriptive Content UI</title>
 
     <script>
@@ -39,7 +38,7 @@ $getLongText; // = false;
             <input type="text" name="phase" /> 
             <label>&ensp; Get Long Description?:</label> 
             <input type="checkbox" name="long_text"> 
-            <br><input type="submit" value="Submit"/></p>
+            <br><input type="submit" value="Display"/></p>
 
         </form>
 

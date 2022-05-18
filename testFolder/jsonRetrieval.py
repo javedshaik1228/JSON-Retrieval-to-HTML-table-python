@@ -30,11 +30,12 @@ def main():
     if checkForError(retrieved_data, phase): return
 
     retrieved_data = json.loads(retrieved_data)         #convert response to json (dict)
-
-    css = "class='table table-bordered table-sm table-hover'"
+    css = "class='bordered-table'"
 
     htmlcode = "<table " + css +">"
-    htmlcode += writeTable(retrieved_data['propertiesList'][0])
+    htmlcode += writeTable(retrieved_data['propertiesList'][0], True)
+    htmlcode += "<table style = 'width:100%' ><tr class = 'emptyrow'><td>&nbsp;</td></tr>" 
+    #an empty table row just to fill the bottom line of table, since border-bottom is hidden for rest of the table.
     htmlcode += "</table>"
     print(htmlcode)
 
