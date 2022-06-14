@@ -1,0 +1,16 @@
+
+    h1 {
+	    text-align:center;
+	    border-bottom: 2px solid #ccc;
+	    letter-spacing:4px;
+        font-weight: bold;
+    }   
+
+    body { 
+        font-family:arial, sans-serif, 'lucida console';
+	    font-size:0.9em;
+	    color: black; 
+	    background-color: #336699; 
+	    margin: 0px;    
+    }   
+

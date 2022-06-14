@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="mystyles.css">
+    <link rel="stylesheet" href="mystyles1.css">
     <title>Hotel Descriptive Content UI</title>
 
     <script>
@@ -51,11 +51,13 @@ $getLongText; // = false;
 
     if(  isset( $_REQUEST[ "property_code" ] ) ){
         $property_code = $_REQUEST["property_code"];
-        $command = 'python jsonRetrieval.py ' . $property_code .' '. $getLongText . ' ' . $phase;  
+        $command = 'python jsonRetrieval.py 2>&1' . $property_code .' '. $getLongText . ' ' . $phase;  
         $output = shell_exec($command);
-        print "<pre><p>" . $output ." </p></pre>";
+        print "<pre>" . $output ." </pre>";
     }
     
+
+
     ?>
         </div>
     </div>

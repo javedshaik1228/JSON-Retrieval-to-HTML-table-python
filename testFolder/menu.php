@@ -1,7 +1,6 @@
-    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
-
     <style>
         .ui-menu { width: 220px; z-index: 100; }
         #menu { width: 220px; z-index: 100; }
@@ -39,10 +38,6 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="retrieve_hoteltdc.php">Hotel Descriptive Content</a>
-                </li>
-                </li>
-                <li>
                     <a href="#">Rates</a>
                     <ul>
                         <li><a href="retrieve_agg.php">Investigate agg</a></li>
@@ -57,6 +52,13 @@
                         <li><a href="retrieve_tax.php">Hrp Tax</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#">Hotel Content Display</a>
+                    <ul>
+                        <li><a href="retrieve_hoteltdc.php">Hotel Descriptive Content</a><li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="#">Links</a>
                     <ul>

@@ -31,7 +31,7 @@ def writeTable(var, isFirstLevel):
                 html += "<td class='hcd_td' rowspan=" + str(get_depth(_item)) +">" + str(_item) + "</td>"
                 html += writeTable(_item , False)
             else:
-                html += "<td class='hcd_td'>" + str(_item) + "</td></tr><tr>"
+                html += "<td class='hcd_td'>" + str(_item) + "</td></tr><tr class = 'hcd_tr'>"
     return html
 
 def checkifFirstLevel(isFirstLevel):      #for each key in 1st level, enter a new table
@@ -42,9 +42,9 @@ def checkifFirstLevel(isFirstLevel):      #for each key in 1st level, enter a ne
 
 def writePair(key, value):
     if (key == "url"):                                                      #for url values, insert anchor tags
-        html = "<td class='hcd_td'>" + str(key) +"</td> <td class='hcd_td'> <a href="+ str(value) +">" + str(value) +  "</a> </td></tr><tr>"
+        html = "<td class='hcd_td'>" + str(key) +"</td> <td class='hcd_td'> <a href="+ str(value) +">" + str(value) +  "</a> </td></tr><tr class = 'hcd_tr'>"
     else:
-        html = "<td class='hcd_td'>" + str(key) +"</td> <td class='hcd_td'>" + str(value) + "</td></tr><tr>"
+        html = "<td class='hcd_td'>" + str(key) +"</td> <td class='hcd_td'>" + str(value) + "</td></tr><tr class = 'hcd_tr'>"
     return html
 
 def valueIsNotNested(value):

@@ -1,7 +1,6 @@
 import os, sys, json, pprint
 import string
 import re
-from tkinter.messagebox import RETRY
 
 import requests
 from jsonToHtmlTable import writeTable
@@ -16,7 +15,7 @@ def main():
         phase = sys.argv[3]
     else:
         return
-
+        
     SAPID = getSAP_ID(phase)
 
     _url = "http://test.webservices.1a.amadeus.net:25050/" + SAPID + "/TDCRET/hotels-descriptive-content/property/retrieve-partial"
@@ -32,11 +31,15 @@ def main():
     retrieved_data = json.loads(retrieved_data)         #convert response to json (dict)
     css = "class='bordered-table'"
 
-    htmlcode = "<table " + css +">"
+    htmlcode = "<table class = 'emptytable-top' style = 'width:100%' ><tr><td>&nbsp;</td></tr> </table>" 
+
+    htmlcode += "<table " + css +">"
     htmlcode += writeTable(retrieved_data['propertiesList'][0], True)
-    htmlcode += "<table style = 'width:100%' ><tr class = 'emptyrow'><td>&nbsp;</td></tr>" 
-    #an empty table row just to fill the bottom line of table, since border-bottom is hidden for rest of the table.
-    htmlcode += "</table>"
+    
+    htmlcode += "<table class = 'emptytable-bottom' style = 'width:100%' ><tr><td>&nbsp;</td></tr> </table>" 
+
+        #empty tables just to fill the top and botom line of table, since border-top, border-bottom is hidden for rest of the table to prevent border merging.
+
     print(htmlcode)
 
 def getSAP_ID(phase):
