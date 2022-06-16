@@ -55,7 +55,7 @@
                 <li>
                     <a href="#">Hotel Content Display</a>
                     <ul>
-                        <li><a href="retrieve_hoteltdc.php">Hotel Descriptive Content</a><li>
+                        <li><a href="retrieve_hotel_content.php">Hotel Descriptive Content</a><li>
                     </ul>
                 </li>
 
