@@ -1,9 +1,11 @@
 #!/usr/bin/env python
+from cgitb import html
 import os, sys, json, pprint
 import string
 import re
 
 import requests
+
 
 def main():
 
@@ -31,17 +33,13 @@ def main():
     if checkForError(retrievedData, phaseCode): return    
 
     #convert response to json (dict)
-    retrievedData = json.loads(retrievedData)             
+    retrievedData = json.loads(retrievedData)         
     css = "class='bordered-table'"
 
-
     #empty tables just to fill the top and botom line of table, since border-top, border-bottom is hidden for rest of the table to prevent border merging.
-    htmlcode = "<table class = 'emptytable-top' ><tr class = 'hcd_tr'><td>&nbsp;</td></tr> </table>" 
-
-    htmlcode += "<table " + css +">"
-    htmlcode += writeTable(retrievedData['propertiesList'][0], True)
-    
-    htmlcode += "<table class = 'emptytable-bottom'><tr class = 'hcd_tr'><td>&nbsp;</td></tr> </table>" 
+    htmlcode = '<div class="accordian">'
+    htmlcode += writeFirstLevel(retrievedData['propertiesList'][0])
+    htmlcode += '</div>'
 
     print(htmlcode)
 
@@ -74,36 +72,66 @@ css = "class='bordered-table'"
     4. Recursive calling of writeTable function with isFirstLevel as false.
 """
 
+#is first level
+def writeFirstLevel(rData):
+    html = ""
+    if(type(rData) == dict):     
+        for key,value in rData.items():         
+            html += insertCard(key,  value)          #new card for each key
+    elif(type(rData) == list):
+        print(len(rData))    
+        for _item in rData:
+            html += insertCard(key = _item)                #new card for each item
+    return html
 
-def writeTable(var, isFirstLevel):
+
+#not in 1st level
+def writeTable(var):
     html = ""
     if(type(var) == dict):     
         for key,value in var.items():
             if(valueIsNotNested(value)):
                 html += writePair(key, value)
             else:
-                html += checkFirstLevel(isFirstLevel)
                 html += "<td class='hcd_td'  rowspan=" + str(getDepth(value)) +">" + str(key) + "</td>"
-                html += writeTable(value, False)
+                html += writeTable(value)
 
     elif(type(var) == list):    
         for _item in var:
             if(type(_item) == dict):
-                html += checkFirstLevel(isFirstLevel)
-                html += writeTable(_item , False)
+                html += writeTable(_item)
             elif type(_item) == list:
-                html += checkFirstLevel(isFirstLevel)
                 html += "<td class='hcd_td' rowspan=" + str(getDepth(_item)) +">" + str(_item) + "</td>"
-                html += writeTable(_item , False)
+                html += writeTable(_item)
             else:
                 html += "<td class='hcd_td'>" + str(_item) + "</td></tr><tr class = 'hcd_tr'>"
     return html
 
-#for each key in 1st level, enter a new table
-def checkFirstLevel(isFirstLevel):            
-    if(isFirstLevel):
-        return "<table " + css +">"
-    return ""
+#for each key in 1st level, enter a new table card
+def insertCard(key, value = None):                  
+    htmlcard = '<div class="card">' 
+    htmlcard += '<div class="card-header">' 
+    #function overloading
+    if value is not None:
+        htmlcard += '<h3>' + getTitle(key) + '</h3> <span class="fa fa-minus"> </span> </div>'
+        htmlcard += '<div class="card-body active"> <table ' + css + '>'
+        htmlcard += writeTable({key: value})
+
+    #If value is none, then list type
+    else:
+        _item = key     
+        htmlcard += '<h3>' + getTitle(_item) + '</h3> <span class="fa fa-minus"> </span> </div>'
+        htmlcard += '<div class="card-body active"> <table ' + css + '>'
+        htmlcard += writeTable([_item])
+    
+    htmlcard += '</table> </div> </div>'
+    return htmlcard
+
+
+#todo
+def getTitle(var):
+    title = str(var)
+    return title
 
 #write the pair as in the form of table data
 def writePair(key, value):                      

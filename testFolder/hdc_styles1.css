@@ -1,13 +1,14 @@
 /* css for hotel descriptive content ui */
 
+body{
+	font-size: 1em;
+}
+
 .bordered-table{
     border-collapse: collapse;
-    border-left: 0.5px solid black;
-    border-right: 0.5px solid black;
-    border-bottom-style: hidden;
-    border-top-style: hidden;
+    border: 0.5px solid black;
     width: 100%;
-    font-size: 1em;
+    font-size: 1.2em;
 }
 
 tr:hover .hcd_td{background-color: #1a7ead1f;}
@@ -26,12 +27,49 @@ tr:hover .hcd_td{background-color: #1a7ead1f;}
     border: 0.5px black;
 }
 
-.emptytable-top{
-    border-collapse: collapse ;
-    border-bottom: 0.5px solid black;
+.accordian{
+	display: grid;
+	padding: 20px;
 }
 
-.emptytable-bottom{
-    border-collapse: collapse ;
-    border-top: 0.5px solid black;
+.accordian .card{
+	width: 100%;
 }
+.accordian .card .card-header h3{
+	cursor: pointer;
+	color:#ffffff;
+	background-color: rgb(150, 229, 253);
+	padding: 10px;
+	padding-left: 20px;
+	margin: 0px;
+	font-size: 1.4em !important; 
+
+}
+.accordian .card .card-header {
+	position: relative;
+	margin: 0px;
+}
+.accordian .card .card-header span{
+	position: absolute;
+	right: 20px;
+	top: 25%;
+	font-size:13px; 
+}
+
+.accordian .card .card-body{
+	margin: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+/*open one card by default*/
+/* .accordian .card:nth-child(1) .card-body{
+ display: block;
+} */
+
+
+
+
+
+
+
+

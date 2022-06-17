@@ -5,10 +5,38 @@
 <head>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="hdc_styles1.css">
-    <link rel="stylesheet" href="./lib/jquery-ui.css" />
+<link rel="stylesheet" href="./lib/jquery-ui.css" />
+<!-- for icons plus minus font awesome-->
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="./lib/jquery-1.8.3.js"></script>
     <script src="./lib/jquery-ui.js"></script>
-        <meta charset="utf-8" />
+    <script>
+            $(document).ready(function(){
+                $(".card-header").click(function(){
+                    if($(this).next(".card-body").hasClass("active")){
+                        $(this).next(".card-body").removeClass("active").slideUp()
+                        $(this).children("span").removeClass("fa-minus").addClass("fa-plus")	
+                    }
+                    else{
+                        $(this).next(".card-body").addClass("active").slideDown()
+                        $(this).children("span").removeClass("fa-plus").addClass("fa-minus")
+                    }
+                })
+
+                $(".label-header").click(function(){
+                    if($(this).next(".label-body").hasClass("active")){
+                        $(this).next(".label-body").removeClass("active").slideUp()
+                        $(this).children("span").removeClass("fa-minus").addClass("fa-plus")	
+                    }
+                    else{
+                        $(this).next(".label-body").addClass("active").slideDown()
+                        $(this).children("span").removeClass("fa-plus").addClass("fa-minus")
+                    }
+                })
+            })
+        
+    </script>
+    <meta charset="utf-8" />
     <title>Hotel Content UI</title>
 </head>
 <body>
@@ -64,6 +92,15 @@ EOD;
     . "<label>Phase:</label> <input type=\"text\" value=\"$phase\" name=\"Phase\"/>\n";
 
     print "<br/><input type=\"submit\" value=\"Display\"/></p>\n</form>";
+    ?>
+          <div class="accordian">
+            <div class="card">
+                  <div class="card-header">
+                       <h3>Table format </h3>
+                       <span class="fa fa-minus"></span>
+                  </div>
+                  <div class="card-body active">
+    <?php
     if (!empty($content)) {
         print "<pre>$content</pre>";
     }
