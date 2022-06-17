@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-from cgitb import html
 import os, sys, json, pprint
 import string
 import re
+from unittest.mock import NonCallableMagicMock
 
 import requests
 
@@ -36,9 +36,19 @@ def main():
     retrievedData = json.loads(retrievedData)         
     css = "class='bordered-table'"
 
-    #empty tables just to fill the top and botom line of table, since border-top, border-bottom is hidden for rest of the table to prevent border merging.
-    htmlcode = '<div class="accordian">'
-    htmlcode += writeFirstLevel(retrievedData['propertiesList'][0])
+    # htmlcode = '<div class="accordian">'
+    # htmlcode += writeFirstLevel(retrievedData['propertiesList'][0])
+    # htmlcode += '</div>'
+
+    # Opening JSON file
+    f = open('test.json')
+  
+    data = json.load(f)
+
+
+    htmlcode = '</pre><div class="tree">'
+    htmlcode += writeTree(retrievedData['propertiesList'][0])
+    # htmlcode += writeTree(data)
     htmlcode += '</div>'
 
     print(htmlcode)
@@ -164,6 +174,54 @@ def getDepth(var):
             else:
                 cnt += getDepth(_item)  
     return cnt
+
+
+"Tree structure"
+def writeTree(rData):
+    html = ""
+    if(type(rData) == dict):
+        for key,value in rData.items():
+            html += insertNode(key, value)
+    return html
+
+def insertNode(key, value = None):
+    if value is not None:
+        htmlNode = "<div class = 'node'>"
+        htmlNode +=  getTitle(key) + '</div>'
+        htmlNode += '<div class = "node-body active"> <ul>'
+        htmlNode += nodeBody(value)
+        htmlNode += '</ul></div>'
+    else:
+        htmlNode = nodeBody(key)
+        htmlNode += '</ul></div>'
+    return htmlNode
+
+def nodeBody(value):
+    htmlNode = ""
+    if(type(value) == dict):
+        for keys,values in value.items():
+            if(valueIsNotNested(values)):
+                htmlNode += '<li>' + str(keys) + ' : ' + str(values) + '</li>'
+            elif(type(values) == dict):
+                htmlNode += insertNode(keys, values)
+            elif(type(values) == list):
+                htmlNode += "<div class = 'node'>"
+                htmlNode +=   getTitle(keys) + '</div>'
+                htmlNode += '<div class = "node-body active"> <ul>'
+                htmlNode += insertNode(values)
+
+    elif(type(value) == list):
+        for _items in value:
+            if(valueIsNotNested(_items)):
+                htmlNode += '<li>' + str(_items) + '</li>'
+            else:
+                htmlNode += "<div class = 'node'> </div>"
+                htmlNode += '<div class = "node-body active"> <ul>'
+                htmlNode += insertNode(_items)
+    else:
+        htmlNode += '<li>' + str(value) + '</li>'
+    return htmlNode
+    
 
 
 if __name__ == "__main__":

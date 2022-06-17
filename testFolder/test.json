@@ -1,0 +1,22 @@
+{
+    "Level 1": {
+        "1.1": "example glossary",
+		"Level 2": {
+            "2.1": "S",
+			"Level 3": {
+                "Level 4": {
+                    "4.1": "SGML",
+					"4.2": "SGML",
+					"4.3": "Standard Generalized Markup Language",
+					"4.4": "SGML",
+					"4.5": "ISO 8879:1986",
+					"Level 5": {
+                        "5.1": "A meta-markup language, used to create markup languages such as DocBook.",
+						"5.2 List Example": ["GML", "XML", ["hi"]]
+                    },
+					"4.6": "markup"
+                }
+            }
+        }
+    }
+}

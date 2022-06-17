@@ -61,15 +61,28 @@ tr:hover .hcd_td{background-color: #1a7ead1f;}
 	padding-left: 20px;
 	padding-right: 20px;
 }
-/*open one card by default*/
-/* .accordian .card:nth-child(1) .card-body{
- display: block;
-} */
 
 
+/* css for tree structure */
+.tree{
+	font-size: 1.2em;
+	font-family: monaco,Consolas,Lucida Console,monospace;
+	padding: 50px;
+}
 
+.tree .node {
+	font-weight: bold;
+}
 
+.tree .node-body {
+	display: grid;
 
+}
 
+.tree .node-body ul{
+	list-style-type:none ;
+	padding-left: 30px;
+	margin: 0px;
+}
 
 
